@@ -4,16 +4,42 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int _currentIndex = 0;
+  List<Widget> tabs = [
+    InstaPost(),
+    Center(child: Text('Likes')),
+    Center(child: Text('okay'))
+  ];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Flutter Basics",
+      debugShowCheckedModeBanner: false,
+      title: "Instagram",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Flutter Basics"),
+          backgroundColor: Colors.pinkAccent,
+          title: Text("Instagram"),
         ),
-        body: InstaPost(),
+        body: tabs[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          currentIndex: _currentIndex,
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
+            BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Like'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'profile'),
+          ],
+        ),
       ),
     );
   }
@@ -25,7 +51,7 @@ class InstaPost extends StatelessWidget {
     return Container(
       width: double.infinity,
       // color: Colors.red,
-      height: 400,
+      // height: 400,
       margin: EdgeInsets.only(top: 20),
       padding: EdgeInsets.only(
         left: 10,
@@ -34,6 +60,8 @@ class InstaPost extends StatelessWidget {
       child: Card(
         elevation: 10,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
               padding: EdgeInsets.only(
@@ -48,7 +76,7 @@ class InstaPost extends StatelessWidget {
                     width: 50,
                     decoration: BoxDecoration(
                       color: Colors.grey,
-                      borderRadius: BorderRadius.circular(25),
+                      borderRadius: BorderRadius.circular(50),
                       image: DecorationImage(
                         image: NetworkImage(
                             'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
@@ -73,7 +101,7 @@ class InstaPost extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     onPressed: () {
-                      print("View Button Pressed");
+                      print('okay');
                     },
                   ),
                 ],
@@ -108,33 +136,101 @@ class InstaPost extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.favorite_border,
-                      color: Colors.black,
-                      size: 45,
+                    InkWell(
+                      onTap: () {
+                        print('Liked');
+                      },
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        child: Image.network(
+                          'https://cdn.iconscout.com/icon/free/png-256/heart-favourite-favorite-love-like-outline-interface-4-14712.png',
+                          fit: BoxFit.cover,
+                          scale: 0.5,
+                        ),
+                      ),
                     ),
                     SizedBox(
                       width: 5,
                     ),
                     //  Comment Icon
-                    Image.network(
-                      'https://image.flaticon.com/icons/png/512/25/25360.png',
-                      fit: BoxFit.cover,
+                    Container(
+                      height: 25,
+                      width: 25,
+                      child: Image.network(
+                        'https://img.pngio.com/chat-comment-instagram-sets-icon-instagram-comment-png-512_512.png',
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     SizedBox(
                       width: 5,
                     ),
                     // Send Icon
-                    Image.network(
-                      'https://img.icons8.com/ios/452/sent.png',
-                      fit: BoxFit.cover,
+                    Container(
+                      height: 25,
+                      width: 25,
+                      child: Image.network(
+                        'https://image.flaticon.com/icons/png/128/4406/4406119.png',
+                        fit: BoxFit.cover,
+                      ),
                     ),
 
                     Spacer(),
-                    Icon(
-                      Icons.save_alt,
-                      color: Colors.black,
-                      size: 40,
+                    Container(
+                      height: 40,
+                      width: 40,
+                      child: Image.network(
+                        'https://t3.ftcdn.net/jpg/03/53/54/64/240_F_353546402_pOnvklktCYPbCFL4nIaYYG1y35ivLHn1.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                        'Hard work beats the talent when talent dose not work hard #WorkHard.....'),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                        ),
+                        Text(
+                          '900 likes',
+                        )
+                      ],
+                    ),
+                    Text("view all 99 comments"),
+                    SizedBox(
+                      height: 2,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(50),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Text('Add your comment..')
+                      ],
                     ),
                   ],
                 ),
@@ -146,3 +242,69 @@ class InstaPost extends StatelessWidget {
     );
   }
 }
+
+
+//  Container(
+//               // color: Colors.red,
+//               width: double.infinity,
+//               child: Padding(
+//                 padding: EdgeInsets.all(10),
+//                 child: Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Text(
+//                         'Hard work beats the talent when talent dose not work hard #WorkHard.....'),
+//                     SizedBox(
+//                       height: 2,
+//                     ),
+//                     Row(
+//                       children: [
+//                         Icon(
+//                           Icons.favorite,
+//                           color: Colors.red,
+//                         ),
+//                         Text(
+//                           '699 likes',
+//                           style: TextStyle(
+//                               fontSize: 15, fontWeight: FontWeight.bold),
+//                         ),
+//                       ],
+//                     ),
+//                     SizedBox(
+//                       height: 1,
+//                     ),
+//                     Text(
+//                       'view all 50 comments',
+//                       style:
+//                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+//                     ),
+//                     SizedBox(
+//                       height: 1,
+//                     ),
+//                     Container(
+//                       child: Row(
+//                         children: [
+//                           Container(
+//                             height: 30,
+//                             width: 30,
+//                             decoration: BoxDecoration(
+//                               color: Colors.grey,
+//                               borderRadius: BorderRadius.circular(25),
+//                               image: DecorationImage(
+//                                 image: NetworkImage(
+//                                     'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
+//                                 fit: BoxFit.cover,
+//                               ),
+//                             ),
+//                           ),
+//                           SizedBox(
+//                             width: 5,
+//                           ),
+//                           Text('Add your comment...')
+//                         ],
+//                       ),
+//                     )
+//                   ],
+//                 ),
+//               ),
+//             )
