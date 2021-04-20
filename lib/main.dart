@@ -243,7 +243,6 @@ class InstaPost extends StatelessWidget {
   }
 }
 
-
 //  Container(
 //               // color: Colors.red,
 //               width: double.infinity,
