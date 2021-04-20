@@ -5,7 +5,7 @@ class InstaPost extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Flutter Basics"),
+        title: Text("Insta Post"),
       ),
       body: Container(
         width: double.infinity,
