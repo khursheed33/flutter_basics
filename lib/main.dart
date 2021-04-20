@@ -18,6 +18,7 @@ class _MyAppState extends State<MyApp> {
   ];
   @override
   Widget build(BuildContext context) {
+    print("App State Class");
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Instagram",
@@ -242,68 +243,3 @@ class InstaPost extends StatelessWidget {
     );
   }
 }
-
-//  Container(
-//               // color: Colors.red,
-//               width: double.infinity,
-//               child: Padding(
-//                 padding: EdgeInsets.all(10),
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     Text(
-//                         'Hard work beats the talent when talent dose not work hard #WorkHard.....'),
-//                     SizedBox(
-//                       height: 2,
-//                     ),
-//                     Row(
-//                       children: [
-//                         Icon(
-//                           Icons.favorite,
-//                           color: Colors.red,
-//                         ),
-//                         Text(
-//                           '699 likes',
-//                           style: TextStyle(
-//                               fontSize: 15, fontWeight: FontWeight.bold),
-//                         ),
-//                       ],
-//                     ),
-//                     SizedBox(
-//                       height: 1,
-//                     ),
-//                     Text(
-//                       'view all 50 comments',
-//                       style:
-//                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-//                     ),
-//                     SizedBox(
-//                       height: 1,
-//                     ),
-//                     Container(
-//                       child: Row(
-//                         children: [
-//                           Container(
-//                             height: 30,
-//                             width: 30,
-//                             decoration: BoxDecoration(
-//                               color: Colors.grey,
-//                               borderRadius: BorderRadius.circular(25),
-//                               image: DecorationImage(
-//                                 image: NetworkImage(
-//                                     'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
-//                                 fit: BoxFit.cover,
-//                               ),
-//                             ),
-//                           ),
-//                           SizedBox(
-//                             width: 5,
-//                           ),
-//                           Text('Add your comment...')
-//                         ],
-//                       ),
-//                     )
-//                   ],
-//                 ),
-//               ),
-//             )
