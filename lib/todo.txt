@@ -1,0 +1,15 @@
+Stateless and Stateful Widget - setState() - Repainting of Widget.
+
+Method - call onPressed, Parametrized, non-Parametrized, Named Parameter, Anonymous Function with/without  Parameter, Anonymous Function with unused Parameter (_) - return type of the Method/Function - why to use THIS Keywords with Constructor.
+
+Naming Conventions - (lowerCamelCase,  lowercase_with_underscores, UpperCamelCase, SCREAMING_CAPS etc.)
+
+List, Map, Object, Dynamic - Generic Type
+
+Lifting State of the Application - Code Management and Resuability of Code.
+
+Spread Operator, Ternary Operator, Fat Arrow Notation =>.
+
+var-Constant-final Variables(late variables) - String Interpolation - Reserved Keywords of Dart.
+
+VS Code Shortcuts
