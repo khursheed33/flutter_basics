@@ -1,4 +1,4 @@
-const MOCK_DATA = [
+List<Map> MOCK_DATA = [
   {
     "username": "jrenouf0",
     "profileImage":

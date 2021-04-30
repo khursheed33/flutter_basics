@@ -13,13 +13,13 @@ class AddCmt extends StatelessWidget {
               cursorColor: Colors.green,
               decoration: InputDecoration(),
               onChanged: (newText) {
-                print(newText);
+                // print(newText);
               },
             ),
             Padding(
               padding: const EdgeInsets.all(20),
-              child: ElevatedButton(onPressed: (){},
-               child: Text('add comment')),
+              child:
+                  ElevatedButton(onPressed: () {}, child: Text('add comment')),
             )
           ],
         ));

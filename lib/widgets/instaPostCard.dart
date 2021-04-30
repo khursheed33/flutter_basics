@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../screens/commentScr.dart';
+import 'package:flutter_basics/screens/commentScr.dart';
 
 class InstaPostCard extends StatefulWidget {
   final String username;
@@ -24,6 +24,7 @@ class _InstaPostCardState extends State<InstaPostCard> {
   bool isLiked = false;
   @override
   Widget build(BuildContext context) {
+    print("Build Called");
     return Card(
       elevation: 10,
       child: Column(
@@ -86,13 +87,12 @@ class _InstaPostCardState extends State<InstaPostCard> {
               });
             },
             child: Container(
-              width: double.infinity,
-              height: 250,
-              child: Image.network(
-                widget.postImage,
-                fit: BoxFit.cover,
-              ) 
-            ),
+                width: double.infinity,
+                height: 250,
+                child: Image.network(
+                  widget.postImage,
+                  fit: BoxFit.cover,
+                )),
           ),
           // end::Image
           // Third Widget of Column
@@ -113,14 +113,20 @@ class _InstaPostCardState extends State<InstaPostCard> {
                   Container(
                     height: 30,
                     width: 30,
-                    child:isLiked? Image.network(
-                      'https://image.flaticon.com/icons/png/128/929/929417.png',
-                      fit: BoxFit.cover,
-                      scale: 0.5,
-                    ): Image.network(
-                      'https://cdn.iconscout.com/icon/free/png-256/heart-favourite-favorite-love-like-outline-interface-4-14712.png',
-                      fit: BoxFit.cover,
-                      scale: 0.5,
+                    // color: Colors.red,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isLiked = !isLiked;
+                        });
+                      },
+                      child: Image.network(
+                        !isLiked
+                            ? 'https://cdn.iconscout.com/icon/free/png-256/heart-favourite-favorite-love-like-outline-interface-4-14712.png'
+                            : 'https://image.flaticon.com/icons/png/128/929/929417.png',
+                        fit: BoxFit.cover,
+                        scale: 0.5,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -203,10 +209,17 @@ class _InstaPostCardState extends State<InstaPostCard> {
                         width: 3,
                       ),
                       GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>AddCmt()));
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (ctx) {
+                                return AddCmt();
+                              },
+                            ),
+                          );
                         },
-                        child: Text('Add your comment..'))
+                        child: Text('Add your comment..'),
+                      )
                     ],
                   ),
                 ],
