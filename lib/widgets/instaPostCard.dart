@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
+import '../screens/commentScr.dart';
 
-class InstaPostCard extends StatelessWidget {
+class InstaPostCard extends StatefulWidget {
   final String username;
   final String profileImage;
   final String comments;
   final String postImage;
   final int likes;
 
-  InstaPostCard(
+  InstaPostCard({
     this.username,
     this.profileImage,
     this.comments,
     this.postImage,
     this.likes,
-  );
+  });
 
+  @override
+  _InstaPostCardState createState() => _InstaPostCardState();
+}
+
+class _InstaPostCardState extends State<InstaPostCard> {
+  bool isLiked = false;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -39,7 +46,7 @@ class InstaPostCard extends StatelessWidget {
                     color: Colors.grey,
                     borderRadius: BorderRadius.circular(50),
                     image: DecorationImage(
-                      image: NetworkImage(profileImage),
+                      image: NetworkImage(widget.profileImage),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -48,7 +55,7 @@ class InstaPostCard extends StatelessWidget {
                   width: 10,
                 ),
                 Text(
-                  username,
+                  widget.username,
                   style: TextStyle(
                     fontSize: 18.0,
                     color: Colors.grey,
@@ -72,12 +79,19 @@ class InstaPostCard extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Container(
-            width: double.infinity,
-            height: 250,
-            child: Image.network(
-              postImage,
-              fit: BoxFit.cover,
+          GestureDetector(
+            onDoubleTap: () {
+              setState(() {
+                isLiked = !isLiked;
+              });
+            },
+            child: Container(
+              width: double.infinity,
+              height: 250,
+              child: Image.network(
+                widget.postImage,
+                fit: BoxFit.cover,
+              ) 
             ),
           ),
           // end::Image
@@ -96,18 +110,17 @@ class InstaPostCard extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  InkWell(
-                    onTap: () {
-                      print('Liked');
-                    },
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      child: Image.network(
-                        'https://cdn.iconscout.com/icon/free/png-256/heart-favourite-favorite-love-like-outline-interface-4-14712.png',
-                        fit: BoxFit.cover,
-                        scale: 0.5,
-                      ),
+                  Container(
+                    height: 30,
+                    width: 30,
+                    child:isLiked? Image.network(
+                      'https://image.flaticon.com/icons/png/128/929/929417.png',
+                      fit: BoxFit.cover,
+                      scale: 0.5,
+                    ): Image.network(
+                      'https://cdn.iconscout.com/icon/free/png-256/heart-favourite-favorite-love-like-outline-interface-4-14712.png',
+                      fit: BoxFit.cover,
+                      scale: 0.5,
                     ),
                   ),
                   SizedBox(
@@ -154,7 +167,7 @@ class InstaPostCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(comments),
+                  Text(widget.comments),
                   Row(
                     children: [
                       Icon(
@@ -162,7 +175,7 @@ class InstaPostCard extends StatelessWidget {
                         color: Colors.red,
                       ),
                       Text(
-                        '$likes likes',
+                        '${widget.likes} likes',
                       )
                     ],
                   ),
@@ -180,7 +193,7 @@ class InstaPostCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50),
                           image: DecorationImage(
                             image: NetworkImage(
-                              profileImage,
+                              widget.profileImage,
                             ),
                             fit: BoxFit.cover,
                           ),
@@ -189,7 +202,11 @@ class InstaPostCard extends StatelessWidget {
                       SizedBox(
                         width: 3,
                       ),
-                      Text('Add your comment..')
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>AddCmt()));
+                        },
+                        child: Text('Add your comment..'))
                     ],
                   ),
                 ],

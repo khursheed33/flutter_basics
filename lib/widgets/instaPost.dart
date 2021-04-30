@@ -13,19 +13,16 @@ class InstaPost extends StatelessWidget {
         right: 10,
       ),
       child: ListView.builder(
+        
         itemCount: MOCK_DATA.length,
         itemBuilder: (BuildContext ctx, int index) {
-          return GestureDetector(
-            onTap: () {
-              print("Post Item: $index");
-            },
-            child: InstaPostCard(
-              MOCK_DATA[index]['username'],
-              MOCK_DATA[index]['profileImage'],
-              MOCK_DATA[index]['comments'],
-              MOCK_DATA[index]['postImage'],
-              MOCK_DATA[index]['likes'],
-            ),
+          return InstaPostCard(
+            username: MOCK_DATA[index]['username'],
+            profileImage:MOCK_DATA[index]['profileImage'] ,
+            comments:MOCK_DATA[index]['comments'] ,
+            likes:MOCK_DATA[index]['likes'] ,
+            postImage: MOCK_DATA[index]['postImage'],
+          
           );
         },
       ),
